@@ -8,11 +8,24 @@ jobs:
     steps:
       - name: Set up Git repository
         uses: actions/checkout@v6
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v4
-        with:
-          root_file: Devendra_Sahu-DevOps-9Years.tex
-          continue_on_error: true
+      - name: Install dependencies
+        run: |
+              sudo apt-get update -y \
+
+              # Install the full version 
+              # sudo apt-get install texlive-full -y
+              # or only your required latex packages 
+              sudo apt install -y \
+                  texlive-base \
+                  texlive-latex-base \
+                  texlive-latex-recommended \
+                  texlive-latex-extra \
+                  texlive-fonts-recommended \
+                  latexmk \
+                  lmodern
+
+      - name: Generate pdfs 
+        run: pdflatex Devendra_Sahu-DevOps-9Years.tex
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
         with:
