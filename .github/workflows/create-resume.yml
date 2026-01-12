@@ -12,6 +12,7 @@ jobs:
         uses: xu-cheng/latex-action@v4
         with:
           root_file: Devendra_Sahu-DevOps-9Years.tex
+          continue_on_error: true
       - name: Upload PDF file
         uses: actions/upload-artifact@v5
         with:
