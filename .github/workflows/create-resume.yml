@@ -1,0 +1,19 @@
+name: Build LaTeX document
+on: 
+  workflow_dispatch:
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v6
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: Devendra_Sahu-DevOps-9Years.tex
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v5
+        with:
+          name: PDF
+          path: Devendra_Sahu-DevOps-9Years.pdf

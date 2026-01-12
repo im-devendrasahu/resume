@@ -1,0 +1,18 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+default_language_version:
+  python: python3
+default_stages:
+  - pre-commit
+  - pre-push
+fail_fast: False
+repos:
+  # General hooks
+  - repo: https://github.com/cmhughes/latexindent.pl.git
+    rev: V3.24.7
+    hooks:
+      - id: latexindent
+  # - repo: https://github.com/WGUNDERWOOD/tex-fmt
+  #   rev: v0.5.6
+  #   hooks:
+  #     - id: tex-fmt

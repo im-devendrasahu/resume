@@ -1,0 +1,32 @@
+#Install Taskfile https://taskfile.dev/docs/installation
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+vars:
+  PERSON: Devendra
+
+env:
+  ENV: testing
+
+dotenv: ['.env', '{{.ENV}}/.env', '{{.HOME}}/.env']
+
+tasks:
+  default:
+    dotenv: ['.env_task_specific']
+    env:
+      TASK_ENV: task_specific_value
+    desc: Print a greeting message
+    cmds:
+      - echo "Hello you are using Taskfile {{.PERSON}} ${ENV} ${TASK_ENV}!"
+    silent: true
+
+  lint:
+    dir: '{{.USER_WORKING_DIR}}'
+    preconditions:
+      - test -f Devendra_Sahu-DevOps-9Years.tex
+    cmds:
+      - docker run -v ./Devendra_Sahu-DevOps-9Years.tex:/Devendra_Sahu-DevOps-9Years.tex --rm -it ghcr.io/cmhughes/latexindent.pl 
+        -s -w Devendra_Sahu-DevOps-9Years.tex
+
+
